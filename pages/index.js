@@ -110,10 +110,14 @@ Home.defaultProps = {
 export async function getServerSideProps(context) {
   const { USER_LOGGED } = parseCookies(context);
 
-  setCookie(context, 'USER_LOGGED', 'false', {
-    maxAge: 30 * 24 * 60 * 60, // 1 dia em segundos
-    path: '/',
-  });
+  if (USER_LOGGED) {
+    //
+  } else {
+    setCookie(context, 'USER_LOGGED', 'false', {
+      maxAge: 30 * 24 * 60 * 60, // 1 dia em segundos
+      path: '/',
+    });
+  }
 
   return {
     props: {
